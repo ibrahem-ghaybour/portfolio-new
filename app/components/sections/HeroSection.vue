@@ -1,37 +1,70 @@
 <script setup lang="ts">
 import { ArrowDownRight, Mail } from '@lucide/vue'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const { personal } = usePortfolioContent()
 
 const root = ref<HTMLElement | null>(null)
+const nameEl = ref<HTMLElement | null>(null)
 const ready = defineModel<boolean>('ready', { default: false })
 const { gsap, reduced } = useGsap()
+
+const nameParts = computed(() => {
+  const name = personal.value.fullName.trim()
+  if (locale.value === 'ar') {
+    return name.split(/\s+/).map((word) => ({ type: 'word' as const, value: word }))
+  }
+  return name.split('').map((ch) => ({
+    type: 'char' as const,
+    value: ch === ' ' ? '\u00A0' : ch,
+  }))
+})
 
 watch(ready, async (value) => {
   if (!value || !import.meta.client) return
   await nextTick()
 
-  const items = root.value?.querySelectorAll('[data-hero-item]')
-  if (!items?.length) return
+  const meta = root.value?.querySelectorAll('[data-hero-item]')
+  const letters = nameEl.value?.querySelectorAll('[data-letter]')
 
   if (reduced.value) {
-    gsap.set(items, { clearProps: 'all', opacity: 1, y: 0 })
+    if (meta?.length) gsap.set(meta, { clearProps: 'all', opacity: 1, y: 0 })
+    if (letters?.length) gsap.set(letters, { clearProps: 'all', opacity: 1, y: 0, rotateX: 0 })
     return
   }
 
-  gsap.fromTo(
-    items,
-    { opacity: 0, y: 24 },
-    {
-      opacity: 1,
-      y: 0,
-      duration: 0.7,
-      stagger: 0.1,
-      ease: 'power2.out',
-      delay: 0.05,
-    },
-  )
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+
+  if (meta?.length) {
+    tl.fromTo(
+      meta,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.55, stagger: 0.08 },
+      0,
+    )
+  }
+
+  if (letters?.length) {
+    tl.fromTo(
+      letters,
+      {
+        opacity: 0,
+        y: 36,
+        rotateX: -55,
+        filter: 'blur(6px)',
+      },
+      {
+        opacity: 1,
+        y: 0,
+        rotateX: 0,
+        filter: 'blur(0px)',
+        duration: 0.7,
+        stagger: locale.value === 'ar' ? 0.08 : 0.028,
+        ease: 'power3.out',
+      },
+      0.12,
+    )
+  }
 })
 </script>
 
@@ -53,10 +86,17 @@ watch(ready, async (value) => {
 
       <h1
         id="hero-name"
-        data-hero-item
-        class="font-display max-w-4xl text-[clamp(2.5rem,8vw,5.25rem)] leading-[1.05] font-bold tracking-tight text-foreground"
+        ref="nameEl"
+        class="font-display hero-name max-w-4xl text-[clamp(2.5rem,8vw,5.25rem)] leading-[1.05] font-bold tracking-tight text-foreground"
+        :aria-label="personal.fullName"
       >
-        {{ personal.fullName }}
+        <span
+          v-for="(part, index) in nameParts"
+          :key="`${part.value}-${index}`"
+          data-letter
+          class="hero-letter inline-block origin-bottom will-change-transform"
+          :class="part.type === 'word' ? 'me-[0.35em]' : ''"
+        >{{ part.value }}</span>
       </h1>
 
       <p
@@ -85,12 +125,18 @@ watch(ready, async (value) => {
 </template>
 
 <style scoped>
-.hero-pending [data-hero-item] {
+.hero-name {
+  perspective: 700px;
+}
+
+.hero-pending [data-hero-item],
+.hero-pending [data-letter] {
   opacity: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-pending [data-hero-item] {
+  .hero-pending [data-hero-item],
+  .hero-pending [data-letter] {
     opacity: 1;
   }
 }
