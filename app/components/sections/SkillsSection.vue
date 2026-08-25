@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { skillGroups } from '~/data/portfolio'
+const { t } = useI18n()
+const { skillGroups } = usePortfolioContent()
 
 const root = ref<HTMLElement | null>(null)
 const { reveal } = useGsap()
@@ -21,13 +22,13 @@ onMounted(async () => {
     <div class="mx-auto max-w-6xl px-5 sm:px-8">
       <div data-reveal class="max-w-2xl">
         <p class="mb-3 text-sm font-medium tracking-[0.16em] text-primary uppercase">
-          Skills
+          {{ t('skills.eyebrow') }}
         </p>
         <h2
           id="skills-heading"
           class="font-display text-3xl font-bold tracking-tight sm:text-4xl"
         >
-          Technologies I work with.
+          {{ t('skills.heading') }}
         </h2>
       </div>
 

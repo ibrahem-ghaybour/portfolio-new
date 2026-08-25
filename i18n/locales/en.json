@@ -1,0 +1,204 @@
+{
+  "meta": {
+    "title": "Ibrahim Marwan Ghaybour — Front-End Web Developer",
+    "description": "Front-End Web Developer specializing in Vue.js, Nuxt.js, and Tailwind CSS. Building modern, responsive, and accessible web applications."
+  },
+  "nav": {
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact",
+    "primary": "Primary",
+    "mobile": "Mobile",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "skip": "Skip to content"
+  },
+  "theme": {
+    "toLight": "Switch to light mode",
+    "toDark": "Switch to dark mode",
+    "label": "Theme"
+  },
+  "locale": {
+    "label": "Language",
+    "en": "EN",
+    "ar": "ع"
+  },
+  "hero": {
+    "viewProjects": "View projects",
+    "getInTouch": "Get in touch"
+  },
+  "about": {
+    "eyebrow": "About",
+    "heading": "Focused on clean interfaces and solid front-end craft."
+  },
+  "skills": {
+    "eyebrow": "Skills",
+    "heading": "Technologies I work with."
+  },
+  "experience": {
+    "eyebrow": "Experience",
+    "heading": "Where I've built and shipped."
+  },
+  "projects": {
+    "eyebrow": "Selected work",
+    "heading": "A selection of projects I've designed and developed.",
+    "featured": "Featured",
+    "keyFeatures": "Key features",
+    "viewLive": "View live",
+    "viewCode": "View code",
+    "viewProject": "View project"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "heading": "Let's build something great together.",
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location",
+    "sendEmail": "Send an email"
+  },
+  "footer": {
+    "role": "Front-End Web Developer"
+  },
+  "personal": {
+    "fullName": "Ibrahim Marwan Ghaybour",
+    "title": "Front-End Web Developer",
+    "location": "Egypt, 10th of Ramadan",
+    "tagline": "Building modern, responsive, and accessible web applications with Vue & Nuxt.",
+    "summary": "Passionate Front-End Developer with 3+ years of experience building modern, responsive, and user-friendly web applications. Specialized in Vue.js, Nuxt.js, and Tailwind CSS, with strong knowledge in performance optimization, accessibility, and SEO. Basic experience with NestJS and Mongoose enables contribution to full-stack applications when needed.",
+    "about": "Skilled at collaborating with cross-functional teams and delivering high-quality projects. Currently seeking remote or on-site front-end roles on innovative products.",
+    "availability": "Looking for opportunities to join innovative teams and contribute to high-impact projects."
+  },
+  "education": {
+    "degree": "Faculty of Science, Mathematics",
+    "place": "Damascus, Syria",
+    "note": "While my formal education is unrelated to web development, I have dedicated over two years of self-learning and practical experience in front-end development."
+  },
+  "languages": {
+    "arabic": "Arabic",
+    "english": "English",
+    "native": "Native",
+    "intermediate": "Intermediate"
+  },
+  "skillGroups": {
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Tools",
+    "soft": "Soft Skills",
+    "softItems": {
+      "problemSolving": "Problem-solving",
+      "collaboration": "Collaboration",
+      "timeManagement": "Time Management",
+      "adaptability": "Adaptability"
+    }
+  },
+  "experienceItems": {
+    "tebalink": {
+      "position": "Front-End Web Developer",
+      "duration": "Jun 2025 – Feb 2026",
+      "description": [
+        "Refactored and scaled the ERP front-end architecture using clean and maintainable coding practices.",
+        "Optimized a slow e-commerce platform through code splitting, lazy loading, pagination, and efficient data fetching.",
+        "Improved overall application performance by 2×+, delivering faster load times and a smoother user experience."
+      ]
+    },
+    "freelance": {
+      "position": "Front-End Web Developer",
+      "duration": "Jun 2025",
+      "description": [
+        "Independent freelance projects including an e-commerce website and a user management dashboard."
+      ]
+    },
+    "genwin": {
+      "position": "Front-End Web Developer",
+      "duration": "Apr 2024",
+      "description": [
+        "Designed and developed responsive web applications using Vue.js, Nuxt.js, JavaScript, and Tailwind CSS.",
+        "Implemented UI/UX designs to improve user experience and reduce bounce rates by 30%.",
+        "Collaborated with back-end developers and designers to ensure smooth integration of APIs and features.",
+        "Conducted regular debugging and performance testing, ensuring cross-browser compatibility."
+      ]
+    }
+  },
+  "projectItems": {
+    "curva": {
+      "title": "Curva",
+      "category": "E-commerce / Sports Platform",
+      "description": "Complete e-commerce platform built independently for sports apparel and gear — with multi-language support, dark/light themes, SEO optimization, dynamic meta tags, and API-driven product display.",
+      "imageAlt": "Curva Egypt desktop homepage featuring sports apparel clearance",
+      "mobileImageAlt": "Curva Egypt mobile homepage with World Cup champions campaign",
+      "features": [
+        "Multi-language support",
+        "Dark / light themes",
+        "SEO & dynamic meta tags",
+        "Responsive, mobile-first UI",
+        "API-driven product catalog",
+        "Async data loading"
+      ]
+    },
+    "user-management": {
+      "title": "User Management Dashboard",
+      "category": "Admin Dashboard / Assessment",
+      "description": "Role-based user management system with authentication, session handling, and full CRUD against a mock API — including pagination, filtering, sorting, i18n, and theme switching.",
+      "imageAlt": "User Management Dashboard project cover",
+      "features": [
+        "Authentication & session handling",
+        "Role-based permissions (RBAC)",
+        "User CRUD operations",
+        "Pagination, filtering & sorting",
+        "Form validation",
+        "Theme switching",
+        "Internationalization",
+        "Custom directives (permissions, focus)",
+        "Pinia caching & optimistic UI"
+      ],
+      "highlights": {
+        "users": "Users",
+        "languages": "Languages",
+        "permissions": "Permissions"
+      }
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "category": "Admin / E-commerce Backoffice",
+      "description": "Vue 3 admin dashboard for managing products, orders, categories, users, carts, and wishlists — with interactive charts, data tables, auth flows, and Cloudinary-ready image uploads.",
+      "imageAlt": "Admin dashboard project cover",
+      "features": [
+        "Products, orders & categories management",
+        "Users, carts & wishlist tables",
+        "Interactive area charts",
+        "Authentication (login / sign up)",
+        "Image upload integration",
+        "Form validation with VeeValidate & Zod"
+      ]
+    },
+    "deliver": {
+      "title": "Deliver",
+      "category": "Landing Page / Delivery Brand",
+      "description": "Marketing landing page for a delivery brand with polished typography, GSAP motion, Bootstrap layout, and clear CTAs for registration and app download.",
+      "imageAlt": "Deliver X landing page with delivery hero and floating UI cards",
+      "features": [
+        "Responsive marketing layout",
+        "GSAP-powered interactions",
+        "About, pricing & cart sections",
+        "Register & download CTAs"
+      ]
+    },
+    "pos": {
+      "title": "POS System Online/Offline",
+      "category": "Point of Sale / Retail",
+      "description": "POS system working online and offline with printer connectivity via USB and internet.",
+      "imageAlt": "POS Point of Sale interface with product grid, filters, shift controls, and invoice panel",
+      "features": [
+        "Online and offline operation",
+        "Printer connectivity via USB and internet",
+        "Product search, categories & filters",
+        "Shift management (open / close)",
+        "Barcode scanning",
+        "Invoice cart with save, delete, print & pay",
+        "Customers and settings modules"
+      ]
+    }
+  }
+}

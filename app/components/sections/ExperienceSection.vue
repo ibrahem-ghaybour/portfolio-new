@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { experience } from '~/data/portfolio'
+const { t } = useI18n()
+const { experience } = usePortfolioContent()
 
 const root = ref<HTMLElement | null>(null)
 const { reveal } = useGsap()
@@ -21,17 +22,17 @@ onMounted(async () => {
     <div class="mx-auto max-w-6xl px-5 sm:px-8">
       <div data-reveal class="max-w-2xl">
         <p class="mb-3 text-sm font-medium tracking-[0.16em] text-primary uppercase">
-          Experience
+          {{ t('experience.eyebrow') }}
         </p>
         <h2
           id="experience-heading"
           class="font-display text-3xl font-bold tracking-tight sm:text-4xl"
         >
-          Where I've built and shipped.
+          {{ t('experience.heading') }}
         </h2>
       </div>
 
-      <ol class="relative mt-14 space-y-0 border-s border-border ms-3 sm:ms-4">
+      <ol class="relative mt-14 ms-3 space-y-0 border-s border-border sm:ms-4">
         <li
           v-for="item in experience"
           :key="`${item.company}-${item.duration}`"

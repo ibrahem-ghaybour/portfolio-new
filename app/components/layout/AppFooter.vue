@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { personal } from '~/data/portfolio'
-
+const { t } = useI18n()
+const { personal } = usePortfolioContent()
 const year = new Date().getFullYear()
 </script>
 
@@ -11,7 +11,7 @@ const year = new Date().getFullYear()
         {{ personal.fullName }}
       </p>
       <p class="text-sm text-muted-foreground">
-        © {{ year }} · Front-End Web Developer
+        © {{ year }} · {{ t('footer.role') }}
       </p>
     </div>
   </footer>

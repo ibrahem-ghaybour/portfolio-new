@@ -1,4 +1,18 @@
 <script setup lang="ts">
+const { t, locale } = useI18n()
+
+useHead(() => ({
+  title: t('meta.title'),
+  htmlAttrs: {
+    lang: locale.value,
+  },
+  meta: [
+    { name: 'description', content: t('meta.description') },
+    { property: 'og:title', content: t('meta.title') },
+    { property: 'og:description', content: t('meta.description') },
+  ],
+}))
+
 const showIntro = ref(true)
 const heroReady = ref(false)
 let safetyTimer: ReturnType<typeof setTimeout> | undefined
@@ -29,9 +43,9 @@ onBeforeUnmount(() => {
 
     <a
       href="#top"
-      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[110] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+      class="sr-only focus:not-sr-only focus:absolute focus:start-4 focus:top-4 focus:z-[110] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
     >
-      Skip to content
+      {{ t('nav.skip') }}
     </a>
 
     <LayoutAppHeader />

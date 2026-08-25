@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { personal } from '~/data/portfolio'
+const { personal } = usePortfolioContent()
 
 const props = defineProps<{
   active: boolean

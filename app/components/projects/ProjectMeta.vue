@@ -6,6 +6,8 @@ defineProps<{
   project: ProjectItem
   compact?: boolean
 }>()
+
+const { t } = useI18n()
 </script>
 
 <template>
@@ -19,7 +21,7 @@ defineProps<{
         variant="secondary"
         class="font-normal tracking-wide uppercase"
       >
-        Featured
+        {{ t('projects.featured') }}
       </Badge>
     </div>
 
@@ -63,7 +65,7 @@ defineProps<{
 
     <div v-if="project.features?.length" class="mt-6">
       <p class="text-xs font-semibold tracking-[0.14em] text-foreground uppercase">
-        Key features
+        {{ t('projects.keyFeatures') }}
       </p>
       <ul class="mt-3 grid gap-2 sm:grid-cols-2">
         <li
@@ -99,7 +101,7 @@ defineProps<{
         class="gap-2"
       >
         <ExternalLink class="size-4" aria-hidden="true" />
-        View live
+        {{ t('projects.viewLive') }}
         <span class="sr-only">(opens in new tab)</span>
       </Button>
       <Button
@@ -112,7 +114,7 @@ defineProps<{
         class="gap-2"
       >
         <Code2 class="size-4" aria-hidden="true" />
-        View code
+        {{ t('projects.viewCode') }}
         <ArrowUpRight class="size-3.5" aria-hidden="true" />
         <span class="sr-only">(opens in new tab)</span>
       </Button>

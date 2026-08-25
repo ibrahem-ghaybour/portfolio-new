@@ -1,30 +1,32 @@
 <script setup lang="ts">
 import { Mail, MapPin, Phone } from '@lucide/vue'
-import { personal } from '~/data/portfolio'
+
+const { t } = useI18n()
+const { personal, contact } = usePortfolioContent()
 
 const root = ref<HTMLElement | null>(null)
 const { reveal } = useGsap()
 
-const contacts = [
+const contacts = computed(() => [
   {
-    label: 'Email',
-    value: personal.email,
-    href: `mailto:${personal.email}`,
+    label: t('contact.email'),
+    value: contact.email,
+    href: `mailto:${contact.email}`,
     icon: Mail,
   },
   {
-    label: 'Phone',
-    value: personal.phone,
-    href: `tel:${personal.phone}`,
+    label: t('contact.phone'),
+    value: contact.phone,
+    href: `tel:${contact.phone}`,
     icon: Phone,
   },
   {
-    label: 'Location',
-    value: personal.location,
-    href: undefined,
+    label: t('contact.location'),
+    value: personal.value.location,
+    href: undefined as string | undefined,
     icon: MapPin,
   },
-] as const
+])
 
 onMounted(async () => {
   await nextTick()
@@ -43,13 +45,13 @@ onMounted(async () => {
     <div class="mx-auto max-w-6xl px-5 sm:px-8">
       <div data-reveal class="max-w-2xl">
         <p class="mb-3 text-sm font-medium tracking-[0.16em] text-primary uppercase">
-          Contact
+          {{ t('contact.eyebrow') }}
         </p>
         <h2
           id="contact-heading"
           class="font-display text-3xl font-bold tracking-tight sm:text-4xl"
         >
-          Let's build something great together.
+          {{ t('contact.heading') }}
         </h2>
         <p class="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
           {{ personal.availability }}
@@ -85,8 +87,8 @@ onMounted(async () => {
       </ul>
 
       <div data-reveal class="mt-10">
-        <Button as="a" :href="`mailto:${personal.email}`" size="lg">
-          Send an email
+        <Button as="a" :href="`mailto:${contact.email}`" size="lg">
+          {{ t('contact.sendEmail') }}
         </Button>
       </div>
     </div>

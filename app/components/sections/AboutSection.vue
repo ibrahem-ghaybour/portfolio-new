@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { education, languages, personal } from '~/data/portfolio'
+const { t } = useI18n()
+const { personal, education, languages } = usePortfolioContent()
 
 const root = ref<HTMLElement | null>(null)
 const { reveal } = useGsap()
@@ -22,13 +23,13 @@ onMounted(async () => {
       <div class="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
         <div data-reveal>
           <p class="mb-3 text-sm font-medium tracking-[0.16em] text-primary uppercase">
-            About
+            {{ t('about.eyebrow') }}
           </p>
           <h2
             id="about-heading"
             class="font-display text-3xl font-bold tracking-tight sm:text-4xl"
           >
-            Focused on clean interfaces and solid front-end craft.
+            {{ t('about.heading') }}
           </h2>
         </div>
 
@@ -54,7 +55,7 @@ onMounted(async () => {
             </p>
           </div>
 
-          <ul class="flex flex-wrap gap-2 pt-2" aria-label="Languages">
+          <ul class="flex flex-wrap gap-2 pt-2" :aria-label="t('skills.eyebrow')">
             <li v-for="lang in languages" :key="lang.name">
               <Badge variant="secondary">
                 {{ lang.name }} · {{ lang.level }}

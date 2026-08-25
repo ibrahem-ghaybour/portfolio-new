@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ArrowDownRight, Mail } from '@lucide/vue'
-import { personal } from '~/data/portfolio'
+
+const { t } = useI18n()
+const { personal } = usePortfolioContent()
 
 const root = ref<HTMLElement | null>(null)
 const ready = defineModel<boolean>('ready', { default: false })
@@ -66,12 +68,12 @@ watch(ready, async (value) => {
 
       <div data-hero-item class="mt-10 flex flex-wrap items-center gap-3">
         <Button as="a" href="#projects" size="lg" class="gap-2">
-          View projects
+          {{ t('hero.viewProjects') }}
           <ArrowDownRight class="size-4" aria-hidden="true" />
         </Button>
         <Button as="a" href="#contact" variant="outline" size="lg" class="gap-2">
           <Mail class="size-4" aria-hidden="true" />
-          Get in touch
+          {{ t('hero.getInTouch') }}
         </Button>
       </div>
 

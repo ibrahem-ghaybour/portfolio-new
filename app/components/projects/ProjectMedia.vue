@@ -11,8 +11,9 @@ const root = ref<HTMLElement | null>(null)
 const { revealMedia } = useGsapReveal()
 
 const href = computed(() => props.project.liveUrl ?? props.project.githubUrl)
+const { t } = useI18n()
 const ctaLabel = computed(() =>
-  props.project.liveUrl ? 'View project' : 'View code',
+  props.project.liveUrl ? t('projects.viewProject') : t('projects.viewCode'),
 )
 const hasMobile = computed(() => Boolean(props.project.mobileImage))
 

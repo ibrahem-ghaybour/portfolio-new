@@ -1,14 +1,17 @@
 <script setup lang="ts">
-import { projects } from '~/data/portfolio'
+const { t } = useI18n()
+const { projects } = usePortfolioContent()
 
 const header = ref<HTMLElement | null>(null)
 const { reveal } = useGsapReveal()
 
 onMounted(async () => {
   await nextTick()
-  if (header.value) reveal(header.value.querySelectorAll('[data-reveal]'), {
-    trigger: header.value,
-  })
+  if (header.value) {
+    reveal(header.value.querySelectorAll('[data-reveal]'), {
+      trigger: header.value,
+    })
+  }
 })
 </script>
 
@@ -26,14 +29,14 @@ onMounted(async () => {
         data-reveal
         class="mb-3 text-sm font-medium tracking-[0.16em] text-primary uppercase"
       >
-        Selected work
+        {{ t('projects.eyebrow') }}
       </p>
       <h2
         id="projects-heading"
         data-reveal
         class="font-display max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl"
       >
-        A selection of projects I've designed and developed.
+        {{ t('projects.heading') }}
       </h2>
     </div>
 
