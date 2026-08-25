@@ -61,12 +61,20 @@
   "footer": {
     "role": "Front-End Web Developer"
   },
+  "codingFor": {
+    "label": "Coding for",
+    "years": "Years",
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds"
+  },
   "personal": {
     "fullName": "Ibrahim Marwan Ghaybour",
     "title": "Front-End Web Developer",
     "location": "Egypt, 10th of Ramadan",
     "tagline": "Building modern, responsive, and accessible web applications with Vue & Nuxt.",
-    "summary": "Passionate Front-End Developer with 3+ years of experience building modern, responsive, and user-friendly web applications. Specialized in Vue.js, Nuxt.js, and Tailwind CSS, with strong knowledge in performance optimization, accessibility, and SEO. Basic experience with NestJS and Mongoose enables contribution to full-stack applications when needed.",
+    "summary": "Passionate Front-End Developer with 2+ years of experience building modern, responsive, and user-friendly web applications. Specialized in Vue.js, Nuxt.js, and Tailwind CSS, with strong knowledge in performance optimization, accessibility, and SEO. Basic experience with NestJS and Mongoose enables contribution to full-stack applications when needed.",
     "about": "Skilled at collaborating with cross-functional teams and delivering high-quality projects. Currently seeking remote or on-site front-end roles on innovative products.",
     "availability": "Looking for opportunities to join innovative teams and contribute to high-impact projects."
   },

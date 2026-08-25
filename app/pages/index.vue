@@ -27,7 +27,7 @@ function onIntroComplete() {
 onMounted(() => {
   safetyTimer = setTimeout(() => {
     onIntroComplete()
-  }, 4200)
+  }, 2400)
 })
 
 onBeforeUnmount(() => {
@@ -52,6 +52,7 @@ onBeforeUnmount(() => {
 
     <main>
       <SectionsHeroSection v-model:ready="heroReady" />
+      <SectionsCodingForSection />
       <SectionsAboutSection />
       <SectionsSkillsSection />
       <SectionsExperienceSection />
