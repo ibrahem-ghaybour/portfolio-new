@@ -29,30 +29,29 @@ onMounted(async () => {
   }
 
   const tl = gsap.timeline({
-    defaults: { ease: 'power3.out' },
+    defaults: { ease: 'sine.out' },
     onComplete: () => emit('complete'),
   })
 
   gsap.set([mark.value, line.value, ring.value], { opacity: 0 })
   gsap.set(line.value, { scaleX: 0 })
-  gsap.set(ring.value, { scale: 0.7 })
-  gsap.set(mark.value, { y: 16, filter: 'blur(8px)' })
+  gsap.set(ring.value, { scale: 0.85 })
+  gsap.set(mark.value, { y: 12, filter: 'blur(5px)' })
 
   tl.to(ring.value, {
     opacity: 1,
     scale: 1,
-    duration: 0.55,
-    ease: 'power2.out',
+    duration: 0.75,
   })
     .to(
       line.value,
       {
         opacity: 1,
         scaleX: 1,
-        duration: 0.55,
-        ease: 'power2.inOut',
+        duration: 0.7,
+        ease: 'sine.inOut',
       },
-      '-=0.25',
+      '-=0.35',
     )
     .to(
       mark.value,
@@ -60,15 +59,15 @@ onMounted(async () => {
         opacity: 1,
         y: 0,
         filter: 'blur(0px)',
-        duration: 0.65,
+        duration: 0.85,
       },
-      '-=0.35',
+      '-=0.4',
     )
-    .to({}, { duration: 0.35 })
+    .to({}, { duration: 0.4 })
     .to(root.value, {
       opacity: 0,
-      duration: 0.45,
-      ease: 'power2.inOut',
+      duration: 0.55,
+      ease: 'sine.inOut',
     })
 })
 </script>

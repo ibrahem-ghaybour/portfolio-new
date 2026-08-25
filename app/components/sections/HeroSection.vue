@@ -33,13 +33,13 @@ watch(ready, async (value) => {
     return
   }
 
-  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+  const tl = gsap.timeline({ defaults: { ease: 'sine.out' } })
 
   if (meta?.length) {
     tl.fromTo(
       meta,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.55, stagger: 0.08 },
+      { opacity: 0, y: 14 },
+      { opacity: 1, y: 0, duration: 0.9, stagger: 0.1 },
       0,
     )
   }
@@ -49,20 +49,20 @@ watch(ready, async (value) => {
       letters,
       {
         opacity: 0,
-        y: 36,
-        rotateX: -55,
-        filter: 'blur(6px)',
+        y: 22,
+        rotateX: -28,
+        filter: 'blur(4px)',
       },
       {
         opacity: 1,
         y: 0,
         rotateX: 0,
         filter: 'blur(0px)',
-        duration: 0.7,
-        stagger: locale.value === 'ar' ? 0.08 : 0.028,
-        ease: 'power3.out',
+        duration: 0.95,
+        stagger: locale.value === 'ar' ? 0.1 : 0.032,
+        ease: 'sine.out',
       },
-      0.12,
+      0.1,
     )
   }
 })

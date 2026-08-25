@@ -47,7 +47,7 @@ onMounted(async () => {
           sizes="100vw md:50vw lg:640px"
           width="1406"
           height="775"
-          class="block h-auto w-full transition-transform duration-700 ease-out will-change-transform group-hover:scale-[1.015] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+          class="block h-auto w-full transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform group-hover:scale-[1.01] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
         />
 
         <div
@@ -111,7 +111,7 @@ onMounted(async () => {
           loading="lazy"
           format="webp"
           sizes="100vw md:50vw lg:720px"
-          class="block h-auto w-full transition-transform duration-700 ease-out will-change-transform group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+          class="block h-auto w-full transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform group-hover:scale-[1.012] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
         />
 
         <div

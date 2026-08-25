@@ -11,7 +11,7 @@ function ensurePlugin() {
 }
 
 /**
- * Shared GSAP helpers for scroll reveals and media entrances.
+ * Shared GSAP helpers — soft, smooth section reveals.
  */
 export function useGsapReveal() {
   const reduced = useReducedMotion()
@@ -35,13 +35,13 @@ export function useGsapReveal() {
 
     gsap.from(elements, {
       opacity: 0,
-      y: 28,
-      duration: 0.7,
-      ease: 'power2.out',
-      stagger: 0.08,
+      y: 18,
+      duration: 1.05,
+      ease: 'sine.out',
+      stagger: 0.12,
       scrollTrigger: {
         trigger: trigger ?? (elements[0] as gsap.DOMTarget),
-        start: 'top 88%',
+        start: 'top 90%',
         once: true,
       },
       ...vars,
@@ -61,13 +61,13 @@ export function useGsapReveal() {
 
     gsap.from(target, {
       opacity: 0,
-      y: 40,
-      scale: 0.97,
-      duration: 0.85,
-      ease: 'power2.out',
+      y: 24,
+      scale: 0.985,
+      duration: 1.15,
+      ease: 'sine.out',
       scrollTrigger: {
         trigger: options.trigger ?? (target as gsap.DOMTarget),
-        start: 'top 90%',
+        start: 'top 92%',
         once: true,
       },
     })
