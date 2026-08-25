@@ -14,15 +14,25 @@ export const projectMeta = [
     highlightValues: null,
   },
   {
-    id: 'user-management',
+    id: 'european-market',
     number: '02',
+    technologies: [] as string[],
+    image: '/projects/european-market.webp',
+    liveUrl: 'https://egdt2959-1.ezeestock.com/',
+    featured: true,
+    layout: 'split-right' as ProjectLayout,
+    highlightValues: null,
+  },
+  {
+    id: 'user-management',
+    number: '03',
     technologies: ['Vue 3', 'Nuxt', 'TypeScript', 'Pinia', 'Tailwind CSS', 'Vue I18n'],
     image: '/projects/user-dashboard.webp',
     liveUrl: undefined,
     githubUrl:
       'https://github.com/ibrahem-ghaybour/user-management-dashboard-vue-3-assessment',
     featured: true,
-    layout: 'split-right' as ProjectLayout,
+    layout: 'split-left' as ProjectLayout,
     highlightValues: [
       { value: '50+', key: 'users' },
       { value: '3', key: 'languages' },
@@ -31,7 +41,7 @@ export const projectMeta = [
   },
   {
     id: 'dashboard',
-    number: '03',
+    number: '04',
     technologies: [
       'Vue 3',
       'TypeScript',
@@ -49,7 +59,7 @@ export const projectMeta = [
   },
   {
     id: 'deliver',
-    number: '04',
+    number: '05',
     technologies: ['TypeScript', 'Vite', 'Bootstrap', 'GSAP', 'Sass'],
     image: '/projects/deliver.webp',
     liveUrl: 'https://ibrahem-ghaybour.github.io/deliver/',
@@ -59,7 +69,7 @@ export const projectMeta = [
   },
   {
     id: 'pos',
-    number: '05',
+    number: '06',
     technologies: [] as string[],
     image: '/projects/pos.webp',
     layout: 'media-first' as ProjectLayout,
@@ -70,7 +80,7 @@ export const projectMeta = [
 export const experienceMeta = [
   {
     id: 'tebalink',
-    company: 'TebaLink',
+    company: 'Teba Link',
     technologies: undefined as string[] | undefined,
   },
   {

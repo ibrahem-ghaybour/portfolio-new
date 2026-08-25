@@ -107,6 +107,7 @@
       "duration": "Jun 2025 – Feb 2026",
       "description": [
         "Refactored and scaled the ERP front-end architecture using clean and maintainable coding practices.",
+        "Built and improved e-commerce experiences, including the European Market (السوق الأوروبي) storefront.",
         "Optimized a slow e-commerce platform through code splitting, lazy loading, pagination, and efficient data fetching.",
         "Improved overall application performance by 2×+, delivering faster load times and a smoother user experience."
       ]
@@ -143,6 +144,21 @@
         "Responsive, mobile-first UI",
         "API-driven product catalog",
         "Async data loading"
+      ]
+    },
+    "european-market": {
+      "title": "European Market",
+      "category": "E-commerce / Teba Link",
+      "description": "Arabic RTL e-commerce storefront for European Market (السوق الأوروبي), developed while working at Teba Link — with product search, category browsing, featured products, currency selection, and cart experience.",
+      "imageAlt": "European Market e-commerce homepage with hero banner and category circles",
+      "features": [
+        "RTL Arabic storefront",
+        "Product search",
+        "Circular category navigation",
+        "Featured products grid",
+        "Currency selector (IQD)",
+        "Cart and account access",
+        "Promotional hero slider"
       ]
     },
     "user-management": {
