@@ -17,12 +17,36 @@ export interface ExperienceItem {
   technologies?: string[]
 }
 
+export type ProjectLayout =
+  | 'featured'
+  | 'split-right'
+  | 'stacked'
+  | 'split-left'
+  | 'media-first'
+
+export interface ProjectHighlight {
+  value: string
+  label: string
+}
+
 export interface ProjectItem {
-  name: string
+  id: string
+  number: string
+  title: string
+  category: string
   description: string
   technologies: string[]
+  image: string
+  imageAlt: string
+  /** Optional mobile screenshot shown beside the desktop preview */
+  mobileImage?: string
+  mobileImageAlt?: string
   liveUrl?: string
   githubUrl?: string
+  featured?: boolean
+  features?: string[]
+  highlights?: ProjectHighlight[]
+  layout: ProjectLayout
 }
 
 export interface LanguageItem {

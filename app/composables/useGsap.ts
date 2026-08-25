@@ -3,13 +3,19 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 let registered = false
 
-export function useGsap() {
-  const reduced = useReducedMotion()
-
+function ensurePlugin() {
   if (import.meta.client && !registered) {
     gsap.registerPlugin(ScrollTrigger)
     registered = true
   }
+}
+
+/**
+ * Shared GSAP helpers for scroll reveals and media entrances.
+ */
+export function useGsapReveal() {
+  const reduced = useReducedMotion()
+  ensurePlugin()
 
   function reveal(
     targets: gsap.TweenTarget,
@@ -17,14 +23,15 @@ export function useGsap() {
   ) {
     if (!import.meta.client) return
 
+    const elements = gsap.utils.toArray(targets)
+    if (!elements.length) return
+
     if (reduced.value) {
-      gsap.set(targets, { clearProps: 'all', opacity: 1, y: 0 })
+      gsap.set(elements, { clearProps: 'all', opacity: 1, y: 0, scale: 1 })
       return
     }
 
     const { trigger, ...vars } = options
-    const elements = gsap.utils.toArray(targets)
-    if (!elements.length) return
 
     gsap.from(elements, {
       opacity: 0,
@@ -41,5 +48,35 @@ export function useGsap() {
     })
   }
 
-  return { gsap, ScrollTrigger, reveal, reduced }
+  function revealMedia(
+    target: gsap.TweenTarget,
+    options: { trigger?: gsap.DOMTarget } = {},
+  ) {
+    if (!import.meta.client) return
+
+    if (reduced.value) {
+      gsap.set(target, { clearProps: 'all', opacity: 1, y: 0, scale: 1 })
+      return
+    }
+
+    gsap.from(target, {
+      opacity: 0,
+      y: 40,
+      scale: 0.97,
+      duration: 0.85,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: options.trigger ?? (target as gsap.DOMTarget),
+        start: 'top 90%',
+        once: true,
+      },
+    })
+  }
+
+  return { gsap, ScrollTrigger, reveal, revealMedia, reduced }
+}
+
+/** @deprecated Prefer useGsapReveal — kept for existing sections */
+export function useGsap() {
+  return useGsapReveal()
 }
