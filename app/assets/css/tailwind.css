@@ -46,7 +46,8 @@
 }
 
 :root {
-  --radius: 0.5rem;
+  /* Slightly softer continuous corners — closer to iOS feel */
+  --radius: 0.75rem;
   /* Soft mist + deep teal — clean, premium, light */
   --background: oklch(0.978 0.006 200);
   --foreground: oklch(0.24 0.025 240);

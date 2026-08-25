@@ -35,7 +35,7 @@ watch(open, (value) => {
     class="fixed inset-x-0 top-0 z-40 transition-[background,border-color,backdrop-filter] duration-300"
     :class="
       scrolled || open
-        ? 'border-b border-border/80 bg-background/85 backdrop-blur-md'
+        ? 'border-b border-border/60 bg-background/75 backdrop-blur-xl'
         : 'border-b border-transparent bg-transparent'
     "
   >
@@ -73,7 +73,7 @@ watch(open, (value) => {
 
         <button
           type="button"
-          class="ms-1 inline-flex size-10 items-center justify-center rounded-md text-foreground transition-colors hover:bg-accent lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          class="ms-1 inline-flex size-10 items-center justify-center rounded-full text-foreground transition-colors hover:bg-accent lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           :aria-expanded="open"
           aria-controls="mobile-nav"
           :aria-label="open ? t('nav.closeMenu') : t('nav.openMenu')"

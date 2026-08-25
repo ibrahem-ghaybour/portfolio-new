@@ -13,7 +13,7 @@ function toggle() {
   <ClientOnly>
     <button
       type="button"
-      class="inline-flex size-9 shrink-0 items-center justify-center rounded-md border-0 bg-transparent text-foreground shadow-none transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      class="inline-flex size-9 shrink-0 items-center justify-center rounded-full border-0 bg-transparent text-foreground shadow-none transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       :aria-label="isDark ? t('theme.toLight') : t('theme.toDark')"
       @click="toggle"
     >

@@ -25,17 +25,17 @@ onMounted(async () => {
 
 <template>
   <div ref="root" class="project-media mx-auto w-full max-w-3xl lg:max-w-4xl">
-    <!-- Desktop + mobile pair (e.g. Curva) -->
+    <!-- Desktop + iPhone pair (e.g. Curva) -->
     <div
       v-if="hasMobile"
-      class="relative flex flex-col items-center gap-4 sm:flex-row sm:items-end sm:gap-4 lg:gap-5"
+      class="relative flex flex-col items-center gap-5 sm:flex-row sm:items-end sm:gap-4 lg:gap-5"
     >
       <component
         :is="href ? 'a' : 'div'"
         :href="href"
         :target="href ? '_blank' : undefined"
         :rel="href ? 'noopener noreferrer' : undefined"
-        class="group relative min-w-0 flex-1 overflow-hidden rounded-lg border border-border bg-[#0a0a0a] shadow-[0_16px_40px_-24px_oklch(0.24_0.025_240/0.35)] outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        class="group relative min-w-0 flex-1 overflow-hidden rounded-[1.35rem] border border-border/70 bg-[#0a0a0a] shadow-[0_20px_50px_-28px_oklch(0.24_0.025_240/0.45)] outline-none ring-1 ring-black/5 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 dark:ring-white/5"
         :aria-label="href ? `${ctaLabel}: ${project.title} desktop` : undefined"
       >
         <NuxtImg
@@ -60,7 +60,7 @@ onMounted(async () => {
           class="pointer-events-none absolute inset-x-0 bottom-0 flex p-3 opacity-0 transition-opacity duration-500 group-hover:opacity-100 sm:p-4 motion-reduce:opacity-100"
         >
           <span
-            class="inline-flex items-center gap-2 rounded-md bg-background/95 px-2.5 py-1.5 text-xs font-medium text-foreground shadow-sm backdrop-blur-sm sm:text-sm"
+            class="inline-flex items-center gap-2 rounded-full bg-background/90 px-3 py-1.5 text-xs font-medium text-foreground shadow-sm backdrop-blur-md sm:text-sm"
           >
             {{ ctaLabel }}
             <ArrowUpRight class="size-3.5" aria-hidden="true" />
@@ -73,34 +73,32 @@ onMounted(async () => {
         :href="href"
         :target="href ? '_blank' : undefined"
         :rel="href ? 'noopener noreferrer' : undefined"
-        class="group relative w-[min(48%,180px)] shrink-0 sm:w-[22%] sm:max-w-[180px] lg:max-w-[190px] outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        class="group relative w-[min(52%,200px)] shrink-0 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:w-[24%] sm:max-w-[200px] lg:max-w-[210px]"
         :aria-label="href ? `${ctaLabel}: ${project.title} mobile` : undefined"
       >
-        <div
-          class="overflow-hidden rounded-[1.1rem] border-[2.5px] border-foreground/15 bg-[#0a0a0a] shadow-[0_18px_36px_-18px_oklch(0.24_0.025_240/0.55)] transition-transform duration-500 group-hover:-translate-y-1 motion-reduce:transition-none motion-reduce:group-hover:translate-y-0"
-        >
+        <ProjectsIphoneFrame interactive>
           <NuxtImg
             :src="project.mobileImage!"
             :alt="project.mobileImageAlt || `${project.title} mobile preview`"
             loading="lazy"
             format="webp"
-            sizes="180px"
+            sizes="200px"
             width="446"
             height="855"
             class="block h-auto w-full"
           />
-        </div>
+        </ProjectsIphoneFrame>
       </component>
     </div>
 
-    <!-- Single preview -->
+    <!-- Single preview — soft iOS-like continuous corners -->
     <component
       v-else
       :is="href ? 'a' : 'div'"
       :href="href"
       :target="href ? '_blank' : undefined"
       :rel="href ? 'noopener noreferrer' : undefined"
-      class="group relative block overflow-hidden rounded-lg border border-border bg-card shadow-[0_16px_40px_-24px_oklch(0.24_0.025_240/0.35)] outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+      class="group relative block overflow-hidden rounded-[1.35rem] border border-border/70 bg-card shadow-[0_20px_50px_-28px_oklch(0.24_0.025_240/0.45)] outline-none ring-1 ring-black/5 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 dark:ring-white/5"
       :aria-label="href ? `${ctaLabel}: ${project.title}` : undefined"
     >
       <div class="relative overflow-hidden bg-muted">
@@ -124,7 +122,7 @@ onMounted(async () => {
           class="pointer-events-none absolute inset-x-0 bottom-0 flex p-3 opacity-0 transition-opacity duration-500 group-hover:opacity-100 sm:p-4 motion-reduce:opacity-100"
         >
           <span
-            class="inline-flex items-center gap-2 rounded-md bg-background/95 px-2.5 py-1.5 text-xs font-medium text-foreground shadow-sm backdrop-blur-sm sm:text-sm"
+            class="inline-flex items-center gap-2 rounded-full bg-background/90 px-3 py-1.5 text-xs font-medium text-foreground shadow-sm backdrop-blur-md sm:text-sm"
           >
             {{ ctaLabel }}
             <ArrowUpRight class="size-3.5" aria-hidden="true" />
