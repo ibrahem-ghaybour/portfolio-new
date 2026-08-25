@@ -20,9 +20,9 @@ export default defineNuxtConfig({
 
   colorMode: {
     classSuffix: '',
-    preference: 'system',
-    fallback: 'light',
-    storageKey: 'portfolio-color-mode',
+    preference: 'dark',
+    fallback: 'dark',
+    storageKey: 'portfolio-theme-v2',
   },
 
   i18n: {
@@ -39,6 +39,7 @@ export default defineNuxtConfig({
       cookieKey: 'portfolio_lang',
       fallbackLocale: 'en',
       redirectOn: 'root',
+      alwaysRedirect: false,
     },
   },
 
