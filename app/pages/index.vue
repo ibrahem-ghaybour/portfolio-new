@@ -27,7 +27,7 @@ function onIntroComplete() {
 onMounted(() => {
   safetyTimer = setTimeout(() => {
     onIntroComplete()
-  }, 2400)
+  }, 3200)
 })
 
 onBeforeUnmount(() => {

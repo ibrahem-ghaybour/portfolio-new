@@ -10,10 +10,46 @@ const emit = defineEmits<{
 }>()
 
 const root = ref<HTMLElement | null>(null)
+const binaryLayer = ref<HTMLElement | null>(null)
+const decodeLayer = ref<HTMLElement | null>(null)
 const mark = ref<HTMLElement | null>(null)
 const line = ref<HTMLElement | null>(null)
-const ring = ref<HTMLElement | null>(null)
 const { gsap, reduced } = useGsap()
+
+const BITS = 96
+const binaryBits = ref(
+  Array.from({ length: BITS }, () => (Math.random() > 0.5 ? '1' : '0')),
+)
+
+const decodeSlots = ref([
+  { display: '0', final: 'I' },
+  { display: '1', final: 'G' },
+])
+
+let scrambleTimers: ReturnType<typeof setInterval>[] = []
+
+function clearScramble() {
+  scrambleTimers.forEach(clearInterval)
+  scrambleTimers = []
+}
+
+function startBitFlicker() {
+  const id = setInterval(() => {
+    binaryBits.value = binaryBits.value.map(() =>
+      Math.random() > 0.5 ? '1' : '0',
+    )
+  }, 70)
+  scrambleTimers.push(id)
+}
+
+function startDecodeScramble() {
+  decodeSlots.value.forEach((slot, index) => {
+    const id = setInterval(() => {
+      slot.display = Math.random() > 0.5 ? '1' : '0'
+    }, 55 + index * 15)
+    scrambleTimers.push(id)
+  })
+}
 
 onMounted(async () => {
   await nextTick()
@@ -28,47 +64,56 @@ onMounted(async () => {
     return
   }
 
+  startBitFlicker()
+  startDecodeScramble()
+
   const tl = gsap.timeline({
     defaults: { ease: 'sine.out' },
-    onComplete: () => emit('complete'),
+    onComplete: () => {
+      clearScramble()
+      emit('complete')
+    },
   })
 
-  gsap.set([mark.value, line.value, ring.value], { opacity: 0 })
-  gsap.set(line.value, { scaleX: 0 })
-  gsap.set(ring.value, { scale: 0.85 })
-  gsap.set(mark.value, { y: 12, filter: 'blur(5px)' })
+  gsap.set(binaryLayer.value, { opacity: 0 })
+  gsap.set(decodeLayer.value, { opacity: 0, y: 8 })
+  gsap.set(mark.value, { opacity: 0, scale: 0.94 })
+  gsap.set(line.value, { scaleX: 0, opacity: 0 })
 
-  tl.to(ring.value, {
-    opacity: 1,
-    scale: 1,
-    duration: 0.75,
-  })
-    .to(
-      line.value,
-      {
-        opacity: 1,
-        scaleX: 1,
-        duration: 0.7,
-        ease: 'sine.inOut',
-      },
-      '-=0.35',
-    )
+  tl.to(binaryLayer.value, { opacity: 0.45, duration: 0.45 })
+    .to(decodeLayer.value, { opacity: 1, y: 0, duration: 0.4 }, '-=0.15')
+    .to({}, { duration: 0.55 })
+    .add(() => {
+      clearScramble()
+      // keep ambient bit flicker slower briefly
+      const idle = setInterval(() => {
+        binaryBits.value = binaryBits.value.map((bit, i) =>
+          Math.random() > 0.82 ? (bit === '0' ? '1' : '0') : bit,
+        )
+      }, 120)
+      scrambleTimers.push(idle)
+
+      decodeSlots.value[0]!.display = 'I'
+      decodeSlots.value[1]!.display = 'G'
+    })
+    .to(decodeLayer.value, { opacity: 0, y: -6, duration: 0.35 }, '+=0.15')
     .to(
       mark.value,
-      {
-        opacity: 1,
-        y: 0,
-        filter: 'blur(0px)',
-        duration: 0.85,
-      },
-      '-=0.4',
+      { opacity: 1, scale: 1, duration: 0.55, ease: 'sine.out' },
+      '-=0.15',
     )
-    .to({}, { duration: 0.4 })
-    .to(root.value, {
-      opacity: 0,
-      duration: 0.55,
-      ease: 'sine.inOut',
-    })
+    .to(
+      line.value,
+      { opacity: 1, scaleX: 1, duration: 0.5, ease: 'sine.inOut' },
+      '-=0.3',
+    )
+    .to({}, { duration: 0.35 })
+    .to(binaryLayer.value, { opacity: 0, duration: 0.4 }, '-=0.1')
+    .to(root.value, { opacity: 0, duration: 0.5, ease: 'sine.inOut' })
+})
+
+onBeforeUnmount(() => {
+  clearScramble()
 })
 </script>
 
@@ -79,34 +124,57 @@ onMounted(async () => {
     class="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-background"
     aria-hidden="true"
   >
-    <!-- Soft brand glow -->
     <div
       class="pointer-events-none absolute inset-0"
       style="
         background:
-          radial-gradient(ellipse 45% 35% at 50% 50%, color-mix(in oklch, var(--primary) 22%, transparent), transparent 70%);
+          radial-gradient(ellipse 45% 35% at 50% 50%, color-mix(in oklch, var(--primary) 18%, transparent), transparent 70%);
       "
     />
 
-    <div class="relative flex flex-col items-center gap-5">
-      <!-- Expanding ring accent -->
+    <!-- Binary field -->
+    <div
+      ref="binaryLayer"
+      class="pointer-events-none absolute inset-0 flex flex-wrap content-center justify-center gap-x-2 gap-y-1 overflow-hidden px-4 opacity-0 select-none sm:gap-x-3"
+    >
       <span
-        ref="ring"
-        class="pointer-events-none absolute top-1/2 left-1/2 size-36 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/25 sm:size-44"
-        aria-hidden="true"
-      />
-
-      <p
-        ref="mark"
-        class="font-display relative z-[1] text-5xl font-bold tracking-[0.28em] text-foreground sm:text-6xl"
+        v-for="(bit, index) in binaryBits"
+        :key="index"
+        class="font-mono text-[0.65rem] text-primary/50 sm:text-xs"
+        :class="bit === '1' ? 'text-primary/70' : 'text-muted-foreground/35'"
       >
-        {{ personal.initials }}
-      </p>
+        {{ bit }}
+      </span>
+    </div>
+
+    <div class="relative z-[1] flex flex-col items-center gap-5">
+      <div class="relative flex h-16 items-center justify-center sm:h-20">
+        <!-- Scrambling 0/1 → IG -->
+        <div
+          ref="decodeLayer"
+          class="font-mono flex gap-3 text-4xl font-semibold tracking-[0.35em] text-primary tabular-nums sm:text-5xl"
+        >
+          <span
+            v-for="(slot, index) in decodeSlots"
+            :key="index"
+            class="inline-block min-w-[1.1em] text-center"
+          >
+            {{ slot.display }}
+          </span>
+        </div>
+
+        <!-- Final monogram -->
+        <p
+          ref="mark"
+          class="font-display absolute inset-0 flex items-center justify-center text-5xl font-bold tracking-[0.28em] text-foreground opacity-0 sm:text-6xl"
+        >
+          {{ personal.initials }}
+        </p>
+      </div>
 
       <span
         ref="line"
-        class="relative z-[1] h-px w-16 origin-center bg-primary sm:w-20"
-        aria-hidden="true"
+        class="h-px w-16 origin-center bg-primary opacity-0 sm:w-20"
       />
     </div>
   </div>
