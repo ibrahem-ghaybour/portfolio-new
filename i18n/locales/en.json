@@ -131,6 +131,20 @@
     }
   },
   "projectItems": {
+    "hectar-plus": {
+      "title": "Hectar Plus",
+      "category": "Real Estate / SaaS Platform",
+      "description": "Marketing site and product showcase for Hectar Plus — a real estate operations platform that presents the business portal, property workflows, feature set, and subscription packages with a clear path into the dashboard.",
+      "imageAlt": "Hectar Plus homepage with business portal hero and tablet dashboard mockup",
+      "features": [
+        "Full Arabic RTL experience",
+        "Property discovery and listing presentation",
+        "Clear features, properties, and packages flows",
+        "Direct dashboard entry for operators",
+        "Bilingual interface with language switching",
+        "Immersive product demo with device and UI card composition"
+      ]
+    },
     "curva": {
       "title": "Curva",
       "category": "E-commerce / Sports Platform",
