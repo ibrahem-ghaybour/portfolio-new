@@ -116,6 +116,15 @@ watch(ready, async (value) => {
           <Mail class="size-4" aria-hidden="true" />
           {{ t('hero.getInTouch') }}
         </Button>
+        <Button
+          as="a"
+          href="#cv"
+          variant="ghost"
+          size="lg"
+          class="gap-2 text-muted-foreground hover:text-foreground"
+        >
+          {{ t('hero.viewCv') }}
+        </Button>
       </div>
 
       <p data-hero-item class="mt-12 text-sm text-muted-foreground">

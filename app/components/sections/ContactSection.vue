@@ -86,10 +86,14 @@ onMounted(async () => {
         </li>
       </ul>
 
-      <div data-reveal class="mt-10">
+      <div data-reveal class="mt-10 flex flex-wrap items-center gap-3">
         <Button as="a" :href="`mailto:${contact.email}`" size="lg">
           {{ t('contact.sendEmail') }}
         </Button>
+      </div>
+
+      <div id="cv" data-reveal class="mt-12 scroll-mt-28">
+        <SectionsCvPanel />
       </div>
     </div>
   </section>

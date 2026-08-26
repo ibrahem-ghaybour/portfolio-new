@@ -27,7 +27,16 @@
   },
   "hero": {
     "viewProjects": "View projects",
-    "getInTouch": "Get in touch"
+    "getInTouch": "Get in touch",
+    "viewCv": "View CV"
+  },
+  "cv": {
+    "label": "Curriculum vitae",
+    "eyebrow": "Resume",
+    "title": "Curriculum Vitae",
+    "description": "A one-page overview of {name}'s experience, skills, and selected work — ready to view or download.",
+    "view": "View CV",
+    "download": "Download PDF"
   },
   "about": {
     "eyebrow": "About",

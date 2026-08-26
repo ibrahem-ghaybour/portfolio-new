@@ -135,6 +135,8 @@ export const contact = {
   email: 'ebrahimghaibour65@gmail.com',
   phone: '+201122625805',
   initials: 'IG',
+  cvUrl: '/cv/ibrahim-marwan-ghaybour.pdf',
+  cvFileName: 'Ibrahim-Marwan-Ghaybour-CV.pdf',
 }
 
 export const navHrefs = [
