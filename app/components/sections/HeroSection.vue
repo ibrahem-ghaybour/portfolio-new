@@ -11,8 +11,9 @@ const { gsap, reduced } = useGsap()
 
 const nameParts = computed(() => {
   const name = personal.value.fullName.trim()
+  // Keep Arabic as a single block so word order stays correct in RTL
   if (locale.value === 'ar') {
-    return name.split(/\s+/).map((word) => ({ type: 'word' as const, value: word }))
+    return [{ type: 'word' as const, value: name }]
   }
   return name.split('').map((ch) => ({
     type: 'char' as const,
@@ -95,7 +96,7 @@ watch(ready, async (value) => {
           :key="`${part.value}-${index}`"
           data-letter
           class="hero-letter inline-block origin-bottom will-change-transform"
-          :class="part.type === 'word' ? 'me-[0.35em]' : ''"
+          :class="part.type === 'word' && locale !== 'ar' ? 'me-[0.35em]' : ''"
         >{{ part.value }}</span>
       </h1>
 
@@ -109,7 +110,7 @@ watch(ready, async (value) => {
       <div data-hero-item class="mt-10 flex flex-wrap items-center gap-3">
         <Button as="a" href="#projects" size="lg" class="gap-2">
           {{ t('hero.viewProjects') }}
-          <ArrowDownRight class="size-4" aria-hidden="true" />
+          <ArrowDownRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
         </Button>
         <Button as="a" href="#contact" variant="outline" size="lg" class="gap-2">
           <Mail class="size-4" aria-hidden="true" />

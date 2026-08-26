@@ -63,7 +63,7 @@ onMounted(async () => {
             class="inline-flex items-center gap-2 rounded-full bg-background/90 px-3 py-1.5 text-xs font-medium text-foreground shadow-sm backdrop-blur-md sm:text-sm"
           >
             {{ ctaLabel }}
-            <ArrowUpRight class="size-3.5" aria-hidden="true" />
+            <ArrowUpRight class="size-3.5 rtl:-scale-x-100" aria-hidden="true" />
           </span>
         </div>
       </component>
@@ -125,7 +125,7 @@ onMounted(async () => {
             class="inline-flex items-center gap-2 rounded-full bg-background/90 px-3 py-1.5 text-xs font-medium text-foreground shadow-sm backdrop-blur-md sm:text-sm"
           >
             {{ ctaLabel }}
-            <ArrowUpRight class="size-3.5" aria-hidden="true" />
+            <ArrowUpRight class="size-3.5 rtl:-scale-x-100" aria-hidden="true" />
           </span>
         </div>
       </div>

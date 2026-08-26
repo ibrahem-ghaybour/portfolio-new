@@ -115,7 +115,7 @@ const { t } = useI18n()
       >
         <Code2 class="size-4" aria-hidden="true" />
         {{ t('projects.viewCode') }}
-        <ArrowUpRight class="size-3.5" aria-hidden="true" />
+        <ArrowUpRight class="size-3.5 rtl:-scale-x-100" aria-hidden="true" />
         <span class="sr-only">(opens in new tab)</span>
       </Button>
     </div>

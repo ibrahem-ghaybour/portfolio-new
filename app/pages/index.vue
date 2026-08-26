@@ -1,10 +1,13 @@
 <script setup lang="ts">
 const { t, locale } = useI18n()
 
+const htmlDir = computed(() => (locale.value === 'ar' ? 'rtl' : 'ltr'))
+
 useHead(() => ({
   title: t('meta.title'),
   htmlAttrs: {
     lang: locale.value,
+    dir: htmlDir.value,
   },
   meta: [
     { name: 'description', content: t('meta.description') },
