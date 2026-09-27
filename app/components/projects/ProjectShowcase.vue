@@ -21,7 +21,7 @@ onMounted(async () => {
     :id="`project-${project.id}`"
     ref="root"
     class="project-showcase border-t border-border/70 py-12 sm:py-16 lg:py-20"
-    :class="{ 'bg-muted/30': index % 2 === 1 }"
+    :class="{ 'bg-muted/15': index % 2 === 1 }"
     :aria-labelledby="`project-title-${project.id}`"
   >
     <!-- Featured: full-width case study -->

@@ -70,7 +70,7 @@ onMounted(async () => {
           v-for="item in contacts"
           :key="item.label"
           data-reveal
-          class="border border-border bg-card/50 p-5 transition-colors duration-300 hover:border-primary/30"
+          class="liquid-glass rounded-2xl p-5 transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-primary/35 motion-reduce:hover:translate-y-0"
         >
           <component
             :is="item.icon"

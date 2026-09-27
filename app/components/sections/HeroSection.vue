@@ -92,7 +92,7 @@ watch(ready, async (value) => {
   <section
     id="top"
     ref="root"
-    class="relative flex min-h-[100svh] items-center pt-16"
+    class="relative flex min-h-[100svh] items-center pt-20"
     :class="{ 'hero-pending': !ready }"
     aria-labelledby="hero-name"
   >

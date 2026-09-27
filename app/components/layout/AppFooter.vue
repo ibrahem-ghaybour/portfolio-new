@@ -7,7 +7,7 @@ const year = new Date().getFullYear()
 </script>
 
 <template>
-  <footer class="border-t border-border/80">
+  <footer class="border-t border-border/50">
     <div class="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-8">
       <p class="font-display text-sm font-semibold tracking-tight">
         {{ personal.fullName }}
@@ -17,7 +17,7 @@ const year = new Date().getFullYear()
           :href="contact.githubUrl"
           target="_blank"
           rel="noopener noreferrer me"
-          class="transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          class="liquid-glass-chip rounded-full px-3 py-1.5 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           GitHub
         </a>

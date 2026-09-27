@@ -8,11 +8,11 @@ const { personal } = usePortfolioContent()
 
 <template>
   <aside
-    class="cv-panel group relative overflow-hidden rounded-[1.35rem] border border-border/70 bg-card/60 p-5 shadow-[0_20px_50px_-28px_oklch(0.24_0.025_240/0.35)] ring-1 ring-black/5 backdrop-blur-sm sm:p-6 dark:ring-white/5"
+    class="cv-panel liquid-glass group relative overflow-hidden rounded-[1.5rem] p-5 sm:p-6"
     :aria-label="t('cv.label')"
   >
     <div
-      class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_80%_at_100%_0%,color-mix(in_oklch,var(--primary)_14%,transparent),transparent_55%)]"
+      class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_80%_at_100%_0%,color-mix(in_oklch,var(--primary)_18%,transparent),transparent_55%)]"
       aria-hidden="true"
     />
 
@@ -26,7 +26,7 @@ const { personal } = usePortfolioContent()
           class="absolute -inset-2 rounded-2xl bg-primary/10 blur-xl transition-opacity duration-500 group-hover:opacity-100 opacity-70"
         />
         <div
-          class="relative overflow-hidden rounded-xl border border-border/80 bg-background shadow-[0_12px_28px_-16px_oklch(0.24_0.025_240/0.5)] transition-transform duration-500 group-hover:-translate-y-1 motion-reduce:transition-none motion-reduce:group-hover:translate-y-0"
+          class="liquid-glass relative overflow-hidden rounded-xl transition-transform duration-500 group-hover:-translate-y-1 motion-reduce:transition-none motion-reduce:group-hover:translate-y-0"
         >
           <div class="flex items-center gap-1.5 border-b border-border/60 bg-muted/40 px-2.5 py-1.5">
             <span class="size-1.5 rounded-full bg-destructive/70" />
