@@ -9,16 +9,35 @@ const nameEl = ref<HTMLElement | null>(null)
 const ready = defineModel<boolean>('ready', { default: false })
 const { gsap, reduced } = useGsap()
 
-const nameParts = computed(() => {
+/**
+ * Two balanced lines on small screens (given names / surname),
+ * one flowing line from sm+ so the hero stays composed.
+ */
+const nameLines = computed(() => {
   const name = personal.value.fullName.trim()
-  // Keep Arabic as a single block so word order stays correct in RTL
+
   if (locale.value === 'ar') {
-    return [{ type: 'word' as const, value: name }]
+    return [{ key: name, chars: [name] }]
   }
-  return name.split('').map((ch) => ({
-    type: 'char' as const,
-    value: ch === ' ' ? '\u00A0' : ch,
-  }))
+
+  const words = name.split(/\s+/).filter(Boolean)
+  if (words.length <= 1) {
+    return [{ key: name, chars: name.split('') }]
+  }
+
+  const given = words.slice(0, -1).join(' ')
+  const surname = words.at(-1)!
+
+  return [
+    {
+      key: given,
+      chars: given.split('').map((ch) => (ch === ' ' ? '\u00A0' : ch)),
+    },
+    {
+      key: surname,
+      chars: surname.split(''),
+    },
+  ]
 })
 
 watch(ready, async (value) => {
@@ -60,7 +79,7 @@ watch(ready, async (value) => {
         rotateX: 0,
         filter: 'blur(0px)',
         duration: 0.95,
-        stagger: locale.value === 'ar' ? 0.1 : 0.032,
+        stagger: locale.value === 'ar' ? 0.1 : 0.028,
         ease: 'sine.out',
       },
       0.1,
@@ -77,10 +96,10 @@ watch(ready, async (value) => {
     :class="{ 'hero-pending': !ready }"
     aria-labelledby="hero-name"
   >
-    <div class="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+    <div class="mx-auto w-full max-w-6xl px-5 py-16 sm:px-8 sm:py-28">
       <p
         data-hero-item
-        class="mb-5 text-sm font-medium tracking-[0.18em] text-primary uppercase"
+        class="mb-4 text-xs font-medium tracking-[0.2em] text-primary uppercase sm:mb-5 sm:text-sm"
       >
         {{ personal.title }}
       </p>
@@ -88,26 +107,35 @@ watch(ready, async (value) => {
       <h1
         id="hero-name"
         ref="nameEl"
-        class="font-display hero-name max-w-4xl text-[clamp(2.5rem,8vw,5.25rem)] leading-[1.05] font-bold tracking-tight text-foreground"
+        class="font-display hero-name text-[clamp(1.9rem,1rem+4.8vw,5.25rem)] leading-[1.1] font-bold tracking-tight text-foreground sm:max-w-4xl sm:leading-[1.05]"
         :aria-label="personal.fullName"
       >
-        <span
-          v-for="(part, index) in nameParts"
-          :key="`${part.value}-${index}`"
-          data-letter
-          class="hero-letter inline-block origin-bottom will-change-transform"
-          :class="part.type === 'word' && locale !== 'ar' ? 'me-[0.35em]' : ''"
-        >{{ part.value }}</span>
+        <template v-for="(line, lineIndex) in nameLines" :key="line.key">
+          <span class="hero-line inline-block whitespace-nowrap">
+            <span
+              v-for="(ch, charIndex) in line.chars"
+              :key="`${line.key}-${charIndex}`"
+              data-letter
+              class="hero-letter inline-block origin-bottom will-change-transform"
+            >{{ ch }}</span>
+          </span>
+          <br v-if="lineIndex < nameLines.length - 1" class="sm:hidden" />
+          <span
+            v-if="lineIndex < nameLines.length - 1"
+            class="hidden sm:inline"
+            aria-hidden="true"
+          >&nbsp;</span>
+        </template>
       </h1>
 
       <p
         data-hero-item
-        class="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground sm:text-xl"
+        class="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:mt-6 sm:text-xl"
       >
         {{ personal.tagline }}
       </p>
 
-      <div data-hero-item class="mt-10 flex flex-wrap items-center gap-3">
+      <div data-hero-item class="mt-8 flex flex-wrap items-center gap-3 sm:mt-10">
         <Button as="a" href="#projects" size="lg" class="gap-2">
           {{ t('hero.viewProjects') }}
           <ArrowDownRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
@@ -116,18 +144,17 @@ watch(ready, async (value) => {
           <Mail class="size-4" aria-hidden="true" />
           {{ t('hero.getInTouch') }}
         </Button>
-        <Button
-          as="a"
-          href="#cv"
-          variant="ghost"
-          size="lg"
-          class="gap-2 text-muted-foreground hover:text-foreground"
-        >
-          {{ t('hero.viewCv') }}
-        </Button>
       </div>
 
-      <p data-hero-item class="mt-12 text-sm text-muted-foreground">
+      <a
+        data-hero-item
+        href="#cv"
+        class="mt-5 inline-flex text-sm font-medium text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:mt-6"
+      >
+        {{ t('hero.viewCv') }}
+      </a>
+
+      <p data-hero-item class="mt-10 text-sm text-muted-foreground sm:mt-12">
         {{ personal.location }}
       </p>
     </div>

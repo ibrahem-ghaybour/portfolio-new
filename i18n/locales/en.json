@@ -1,7 +1,9 @@
 {
   "meta": {
-    "title": "Ibrahim Marwan Ghaybour — Front-End Web Developer",
-    "description": "Front-End Web Developer specializing in Vue.js, Nuxt.js, and Tailwind CSS. Building modern, responsive, and accessible web applications."
+    "title": "Ibrahim Marwan Ghaybour — Front-End Web Developer | Vue & Nuxt",
+    "description": "Portfolio of Ibrahim Marwan Ghaybour, Front-End Web Developer in Egypt specializing in Vue.js, Nuxt.js, TypeScript, and Tailwind CSS. View selected work: Hectar Plus, Curva, and more.",
+    "keywords": "Ibrahim Marwan Ghaybour, Front-End Developer, Vue.js developer, Nuxt.js developer, TypeScript, Tailwind CSS, Egypt web developer, portfolio, Hectar Plus, Curva Egypt",
+    "ogImageAlt": "Ibrahim Marwan Ghaybour — Front-End Web Developer portfolio"
   },
   "nav": {
     "about": "About",
@@ -65,6 +67,7 @@
     "email": "Email",
     "phone": "Phone",
     "location": "Location",
+    "github": "GitHub",
     "sendEmail": "Send an email"
   },
   "footer": {

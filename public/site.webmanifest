@@ -1,0 +1,29 @@
+{
+  "name": "Ibrahim Marwan Ghaybour",
+  "short_name": "IG Portfolio",
+  "description": "Front-End Web Developer specializing in Vue.js, Nuxt.js, and Tailwind CSS.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f1c24",
+  "theme_color": "#2a6b6f",
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/og-square.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

@@ -137,6 +137,7 @@ export const contact = {
   initials: 'IG',
   cvUrl: '/cv/ibrahim-marwan-ghaybour.pdf',
   cvFileName: 'Ibrahim-Marwan-Ghaybour-CV.pdf',
+  githubUrl: 'https://github.com/ibrahem-ghaybour',
 }
 
 export const navHrefs = [

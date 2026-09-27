@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Mail, MapPin, Phone } from '@lucide/vue'
+import { Code2, Mail, MapPin, Phone } from '@lucide/vue'
 
 const { t } = useI18n()
 const { personal, contact } = usePortfolioContent()
@@ -25,6 +25,13 @@ const contacts = computed(() => [
     value: personal.value.location,
     href: undefined as string | undefined,
     icon: MapPin,
+  },
+  {
+    label: t('contact.github'),
+    value: 'ibrahem-ghaybour',
+    href: contact.githubUrl,
+    icon: Code2,
+    external: true,
   },
 ])
 
@@ -58,7 +65,7 @@ onMounted(async () => {
         </p>
       </div>
 
-      <ul class="mt-12 grid gap-4 sm:grid-cols-3">
+      <ul class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <li
           v-for="item in contacts"
           :key="item.label"
@@ -77,6 +84,11 @@ onMounted(async () => {
             v-if="item.href"
             :href="item.href"
             class="mt-1 inline-block text-base font-medium text-foreground underline-offset-4 transition-colors hover:text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            v-bind="
+              item.external
+                ? { target: '_blank', rel: 'noopener noreferrer me' }
+                : {}
+            "
           >
             {{ item.value }}
           </a>

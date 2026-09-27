@@ -1,20 +1,7 @@
 <script setup lang="ts">
-const { t, locale } = useI18n()
+useSiteSeo()
 
-const htmlDir = computed(() => (locale.value === 'ar' ? 'rtl' : 'ltr'))
-
-useHead(() => ({
-  title: t('meta.title'),
-  htmlAttrs: {
-    lang: locale.value,
-    dir: htmlDir.value,
-  },
-  meta: [
-    { name: 'description', content: t('meta.description') },
-    { property: 'og:title', content: t('meta.title') },
-    { property: 'og:description', content: t('meta.description') },
-  ],
-}))
+const { t } = useI18n()
 
 const showIntro = ref(true)
 const heroReady = ref(false)
@@ -45,7 +32,7 @@ onBeforeUnmount(() => {
     <LayoutIntroLoader :active="showIntro" @complete="onIntroComplete" />
 
     <a
-      href="#top"
+      href="#main-content"
       class="sr-only focus:not-sr-only focus:absolute focus:start-4 focus:top-4 focus:z-[110] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
     >
       {{ t('nav.skip') }}
@@ -53,7 +40,9 @@ onBeforeUnmount(() => {
 
     <LayoutAppHeader />
 
-    <main>
+    <main id="main-content" itemscope itemtype="https://schema.org/ProfilePage">
+      <meta itemprop="name" :content="t('meta.title')" />
+      <meta itemprop="description" :content="t('meta.description')" />
       <SectionsHeroSection v-model:ready="heroReady" />
       <SectionsCodingForSection />
       <SectionsAboutSection />
