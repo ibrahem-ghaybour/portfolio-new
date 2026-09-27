@@ -115,7 +115,8 @@ export default defineNuxtConfig({
 
   nitro: {
     prerender: {
-      crawlLinks: true,
+      // Single-page portfolio: only locale entry routes (no link crawl noise)
+      crawlLinks: false,
       routes: ['/', '/ar'],
     },
   },
