@@ -96,67 +96,75 @@ watch(ready, async (value) => {
     :class="{ 'hero-pending': !ready }"
     aria-labelledby="hero-name"
   >
-    <div class="mx-auto w-full max-w-6xl px-5 py-16 sm:px-8 sm:py-28">
-      <p
-        data-hero-item
-        class="mb-4 text-xs font-medium tracking-[0.2em] text-primary uppercase sm:mb-5 sm:text-sm"
-      >
-        {{ personal.title }}
-      </p>
+    <div
+      class="mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-16 sm:px-8 sm:py-28 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-12"
+    >
+      <div class="min-w-0">
+        <p
+          data-hero-item
+          class="mb-4 text-xs font-medium tracking-[0.2em] text-primary uppercase sm:mb-5 sm:text-sm"
+        >
+          {{ personal.title }}
+        </p>
 
-      <h1
-        id="hero-name"
-        ref="nameEl"
-        class="font-display hero-name text-[clamp(1.9rem,1rem+4.8vw,5.25rem)] leading-[1.1] font-bold tracking-tight text-foreground sm:max-w-4xl sm:leading-[1.05]"
-        :aria-label="personal.fullName"
-      >
-        <template v-for="(line, lineIndex) in nameLines" :key="line.key">
-          <span class="hero-line inline-block whitespace-nowrap">
+        <h1
+          id="hero-name"
+          ref="nameEl"
+          class="font-display hero-name text-[clamp(1.9rem,1rem+4.8vw,5.25rem)] leading-[1.1] font-bold tracking-tight text-foreground sm:leading-[1.05]"
+          :aria-label="personal.fullName"
+        >
+          <template v-for="(line, lineIndex) in nameLines" :key="line.key">
+            <span class="hero-line inline-block whitespace-nowrap">
+              <span
+                v-for="(ch, charIndex) in line.chars"
+                :key="`${line.key}-${charIndex}`"
+                data-letter
+                class="hero-letter inline-block origin-bottom will-change-transform"
+              >{{ ch }}</span>
+            </span>
+            <br v-if="lineIndex < nameLines.length - 1" class="sm:hidden" />
             <span
-              v-for="(ch, charIndex) in line.chars"
-              :key="`${line.key}-${charIndex}`"
-              data-letter
-              class="hero-letter inline-block origin-bottom will-change-transform"
-            >{{ ch }}</span>
-          </span>
-          <br v-if="lineIndex < nameLines.length - 1" class="sm:hidden" />
-          <span
-            v-if="lineIndex < nameLines.length - 1"
-            class="hidden sm:inline"
-            aria-hidden="true"
-          >&nbsp;</span>
-        </template>
-      </h1>
+              v-if="lineIndex < nameLines.length - 1"
+              class="hidden sm:inline"
+              aria-hidden="true"
+            >&nbsp;</span>
+          </template>
+        </h1>
 
-      <p
-        data-hero-item
-        class="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:mt-6 sm:text-xl"
-      >
-        {{ personal.tagline }}
-      </p>
+        <p
+          data-hero-item
+          class="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:mt-6 sm:text-xl"
+        >
+          {{ personal.tagline }}
+        </p>
 
-      <div data-hero-item class="mt-8 flex flex-wrap items-center gap-3 sm:mt-10">
-        <Button as="a" href="#projects" size="lg" class="gap-2">
-          {{ t('hero.viewProjects') }}
-          <ArrowDownRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
-        </Button>
-        <Button as="a" href="#contact" variant="outline" size="lg" class="gap-2">
-          <Mail class="size-4" aria-hidden="true" />
-          {{ t('hero.getInTouch') }}
-        </Button>
+        <div data-hero-item class="mt-8 flex flex-wrap items-center gap-3 sm:mt-10">
+          <Button as="a" href="#projects" size="lg" class="gap-2">
+            {{ t('hero.viewProjects') }}
+            <ArrowDownRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+          </Button>
+          <Button as="a" href="#contact" variant="outline" size="lg" class="gap-2">
+            <Mail class="size-4" aria-hidden="true" />
+            {{ t('hero.getInTouch') }}
+          </Button>
+        </div>
+
+        <a
+          data-hero-item
+          href="#cv"
+          class="mt-5 inline-flex text-sm font-medium text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:mt-6"
+        >
+          {{ t('hero.viewCv') }}
+        </a>
+
+        <p data-hero-item class="mt-10 text-sm text-muted-foreground sm:mt-12">
+          {{ personal.location }}
+        </p>
       </div>
 
-      <a
-        data-hero-item
-        href="#cv"
-        class="mt-5 inline-flex text-sm font-medium text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:mt-6"
-      >
-        {{ t('hero.viewCv') }}
-      </a>
-
-      <p data-hero-item class="mt-10 text-sm text-muted-foreground sm:mt-12">
-        {{ personal.location }}
-      </p>
+      <div data-hero-item class="mt-2 lg:mt-0">
+        <SectionsHeroModel />
+      </div>
     </div>
   </section>
 </template>

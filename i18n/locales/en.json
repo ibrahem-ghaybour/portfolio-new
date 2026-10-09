@@ -30,7 +30,9 @@
   "hero": {
     "viewProjects": "View projects",
     "getInTouch": "Get in touch",
-    "viewCv": "View CV"
+    "viewCv": "View CV",
+    "modelLabel": "Interactive 3D portrait",
+    "modelFallback": "3D preview unavailable in this browser."
   },
   "cv": {
     "label": "Curriculum vitae",

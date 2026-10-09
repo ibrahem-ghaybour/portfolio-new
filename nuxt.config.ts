@@ -113,6 +113,12 @@ export default defineNuxtConfig({
     format: ['webp'],
   },
 
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => tag === 'model-viewer',
+    },
+  },
+
   nitro: {
     prerender: {
       // Single-page portfolio: only locale entry routes (no link crawl noise)
